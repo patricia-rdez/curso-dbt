@@ -1,0 +1,19 @@
+models:
+  - name: slv_google_sheets__budget
+    description: Presupuesto de Silver.
+    columns:
+      - name: budget_id
+        description: Identificador de fila de la hoja (_row en origen).
+        data_tests:
+          - unique
+          - not_null
+      - name: product_id
+        data_tests:
+          - relationships:
+             arguments:
+              to: ref('slv_sql_server_dbo__products')
+              field: product_id
+      - name: quantity_budgeted
+      - name: budget_month
+        description: Mes del presupuesto, casteado a date.
+      - name: date_load
