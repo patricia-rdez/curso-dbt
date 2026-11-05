@@ -142,3 +142,15 @@ models:
               config:
                 store_failures: true
 
+unit_tests:
+  - name: test_dim_products_categoriza_stock
+    model: dim_products
+    given:
+      - input: ref('dim_products')
+        rows:
+          - {product_id: p1, product_name: 'Aloe vera', unit_price_usd: 10, inventory_units: 0, stock_status: 'out_of_stock', date_load: ''}
+          - {product_id: p2, product_name: 'Hiedra', unit_price_usd: 4, inventory_units: 5, stock_status: 'low_stock', date_load:}
+          - {product_id: p3, product_name: 'Helecho', unit_price_usd: 3, inventory_units: 100, stock_status: 'in_stock', date_load:}
+    expect:
+      rows:
+        - {}
