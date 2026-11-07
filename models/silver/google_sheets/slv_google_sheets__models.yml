@@ -14,6 +14,7 @@ models:
               to: ref('slv_sql_server_dbo__products')
               field: product_id
       - name: quantity_budgeted
-      - name: budget_month
+        data_tests:
+           - positive_values
         description: Mes del presupuesto, casteado a date.
       - name: date_load
