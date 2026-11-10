@@ -3,7 +3,7 @@ with users as (
 ),
 
 addresses as (
-    select * from {{ ref('dim_addresses') }} --no sé si es así o tengo que cogerla de la silver
+    select * from {{ ref('dim_addresses') }}
 ),
 
 final as (
