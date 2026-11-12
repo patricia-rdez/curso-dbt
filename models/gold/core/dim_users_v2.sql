@@ -1,3 +1,12 @@
+-- =============================================================================
+-- dim_users_v2
+-- =============================================================================
+-- Dimensión de usuarios, enriquecida con su dirección por defecto.
+-- Versión 2: elimina last_updated_at_utc. Es un cambio incompatible para quien
+-- consumía esa columna, por eso se publica como versión nueva y la v1 convive
+-- hasta su deprecation_date. ref('dim_users') resuelve a la última versión.
+-- =============================================================================
+
 with users as (
     select * from {{ ref('slv_sql_server_dbo__users') }}
 ),
@@ -25,7 +34,6 @@ final as (
         , a.country
         , a.continent
         , u.created_at_utc                                  as registered_at_utc
-        , u.updated_at_utc                                  as last_updated_at_utc
         , datediff('day', u.created_at_utc, current_timestamp()) as days_since_registration
         , u.date_load
     from users u
