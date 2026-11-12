@@ -21,6 +21,7 @@ final as (
         , delivered_at_utc
         , days_to_deliver
         , date_load
+        , year(date_load) as year_date_load
     from orders
 )
 
